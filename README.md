@@ -42,6 +42,9 @@
 - **⚡ Real-time Updates**: 1-second control loop with instant MQTT status publishing
 - **🎨 Light Control**: Support for Hayward ColorLogic 17-color/show library
 
+## Home Assistant Dashboard
+
+![Home Assistant dashboard screenshot](docs/screenshots/img-ha-dashboard.png)
 ---
 
 ## 📦 Prerequisites
@@ -220,12 +223,12 @@ mosquitto_sub -h localhost -t "#"
 
 ### Configuration Files
 
-| File | Purpose | Version Control |
-|------|---------|-----------------|
-| `config.json` | Default configuration (committed) | ✅ Tracked |
-| `config_custom.json` | Local overrides (production credentials) | ❌ Gitignored |
-| `config.sim.json` | Simulation mode settings | ✅ Tracked |
-| `config.json.example` | Template for custom configuration | ✅ Tracked |
+| File                      | Purpose | Version Control |
+|---------------------------|---------|-----------------|
+| `config.json`             | Default configuration | ❌ Gitignored    |
+| `config.sim.json`         | Simulation mode settings | ❌ Gitignored       |
+| `config.json.example`     | Template for custom configuration | ✅ Tracked       |
+| `config.sim.json.example` | Template for custom configuration | ✅ Tracked       |
 
 ### Configuration Priority
 The system loads configuration in this order (later overrides earlier):
