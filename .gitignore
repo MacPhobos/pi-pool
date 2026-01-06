@@ -1,0 +1,19 @@
+/config.json
+/config.sim.json
+/debug.log
+/config_custom.json
+/venv/
+/.venv/
+/.idea/
+/debug.log/
+/uv.lock/
+/.claude
+/.claude-mpm
+/.aitrackdown
+__pycache__
+
+# Build artifacts
+*.egg-info/
+build/
+dist/
+.pytest_cache/

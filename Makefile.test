@@ -1,0 +1,91 @@
+# Makefile for PiPool testing commands
+# Include in main Makefile or use with: make -f Makefile.test <target>
+
+.PHONY: test test-unit test-integration test-safety test-e2e test-cov test-fast test-all install-test clean-test
+
+# Install test dependencies
+install-test:
+	uv pip install -e ".[test]"
+
+# Run all tests
+test:
+	uv run pytest
+
+# Run unit tests only
+test-unit:
+	uv run pytest -m unit
+
+# Run integration tests only
+test-integration:
+	uv run pytest -m integration
+
+# Run safety-critical tests only
+test-safety:
+	uv run pytest -m safety
+
+# Run e2e tests only
+test-e2e:
+	uv run pytest -m e2e
+
+# Run tests with coverage (requires sqlite3)
+test-cov:
+	uv run pytest --cov=src --cov-report=html --cov-report=term-missing
+
+# Run tests in parallel (faster)
+test-fast:
+	uv run pytest -n auto
+
+# Run all tests including slow ones
+test-all:
+	uv run pytest --run-slow
+
+# Run tests with verbose output
+test-verbose:
+	uv run pytest -vv -s
+
+# Run specific test file (usage: make test-file FILE=tests/unit/test_config.py)
+test-file:
+	uv run pytest $(FILE) -v
+
+# Clean test artifacts
+clean-test:
+	rm -rf .pytest_cache
+	rm -rf htmlcov
+	rm -rf .coverage
+	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete
+
+# Watch mode (requires pytest-watch)
+test-watch:
+	uv run ptw
+
+# Generate coverage report only (no tests)
+coverage-report:
+	uv run coverage html
+	@echo "Coverage report: htmlcov/index.html"
+
+# Show test statistics
+test-stats:
+	@echo "Test Statistics:"
+	@uv run pytest --collect-only -q | tail -1
+	@echo ""
+	@echo "Tests by marker:"
+	@uv run pytest --collect-only -m unit -q | tail -1 | sed 's/^/  unit: /'
+	@uv run pytest --collect-only -m integration -q | tail -1 | sed 's/^/  integration: /'
+	@uv run pytest --collect-only -m safety -q | tail -1 | sed 's/^/  safety: /'
+	@uv run pytest --collect-only -m e2e -q | tail -1 | sed 's/^/  e2e: /'
+
+# Help
+help-test:
+	@echo "PiPool Test Targets:"
+	@echo "  make install-test    - Install test dependencies"
+	@echo "  make test            - Run all tests"
+	@echo "  make test-unit       - Run unit tests only"
+	@echo "  make test-integration - Run integration tests"
+	@echo "  make test-safety     - Run safety-critical tests"
+	@echo "  make test-e2e        - Run end-to-end tests"
+	@echo "  make test-cov        - Run tests with coverage"
+	@echo "  make test-fast       - Run tests in parallel"
+	@echo "  make test-verbose    - Run tests with verbose output"
+	@echo "  make clean-test      - Clean test artifacts"
+	@echo "  make test-stats      - Show test statistics"

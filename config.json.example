@@ -1,0 +1,54 @@
+{
+	"tempSensors": {
+
+		"in_to_heater": { 
+		        "name": "temp_sensor_in",
+		        "device": "/sys/bus/w1/devices/28-3c01d607777b"
+		},
+    
+    	        "out_from_heater": {
+        		"name": "temp_sensor_out",
+			"device": "/sys/bus/w1/devices/28-3c55f649ce7e"
+		},
+
+		"temp_ambient": {
+			"name": "temp_ambient",
+			"device": "/sys/bus/w1/devices/28-3c01d607831d"
+		}
+	},
+	
+	"pumpPort": 8,
+	"heaterPort": 7,
+	"lightPort": 6,
+	"pumpSpeedS1Port": 1,
+	"pumpSpeedS2Port": 2,
+	"pumpSpeedS3Port": 3,
+	"pumpSpeedS4Port": 4,
+
+	"maxWaterTemp": 33,
+	"maxHeaterRuntimeSeconds": 14400,
+
+    "comment_pingTarget": "IP address of a host on your network to ping to check if the system is online. If not, we want to prevent run-away heater/pump scenarios when disconnected."
+	"pingTarget": "192.168.1.x",
+
+    "comment_mqttBroker": "IP address of the MQTT broker to publish data to."
+	"mqttBroker": "192.168.1.x",
+
+	"dbName": "pipool",
+	"dbUser": "pipool",
+	"dbPassword": "CHANGEME_TO_YOUR_DB_PASSWORD",
+
+	"simulation": {
+		"thermal": {
+			"initial_pool_temperature": 26.0,
+			"initial_ambient_temperature": 22.0,
+			"heater_delta": 10.0,
+			"max_heater_output_temp": 40.0,
+			"pool_heating_rate_per_hour": 5.0,
+			"pool_heat_loss_rate_per_hour": 0.5,
+			"sensor_noise": 0.05
+		},
+		"time_multiplier": 1.0
+	}
+
+}

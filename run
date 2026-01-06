@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ROOT_DIR=/root/pipool
+
+cd $ROOT_DIR
+python $ROOT_DIR/src/pipool.py
+

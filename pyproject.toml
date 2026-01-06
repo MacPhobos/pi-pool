@@ -1,0 +1,36 @@
+[project]
+name = "pi-pool"
+version = "0.1.0"
+description = "Pool control system for Raspberry Pi"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.17.2",
+    "paho-mqtt>=2.1.0",
+    "psycopg2>=2.9.11",
+    "pytest>=9.0.2",
+    "pythonping>=1.1.4",
+    "sqlalchemy>=2.0.0",
+]
+
+[project.optional-dependencies]
+# RPi.GPIO is pre-installed on Raspberry Pi OS
+# This optional dependency is for reference only - not needed for simulation mode
+rpi = [
+    "RPi.GPIO>=0.7.0",
+]
+
+test = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "freezegun>=1.2.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-timeout>=2.1.0",
+    "pytest-clarity>=1.0.1",
+    "pytest-datadir>=1.4.1",
+    "pytest-snapshot>=0.9.0",
+    "pytest-bdd>=6.1.0",
+    "pytest-html>=3.2.0",
+    "pytest-xdist>=3.3.0",
+]

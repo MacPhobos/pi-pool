@@ -1,0 +1,44 @@
+{
+	"hardwareMode": "simulated",
+
+	"tempSensors": {
+		"in_to_heater": {
+			"name": "temp_sensor_in",
+			"device": "/simulated/temp_in"
+		},
+
+		"out_from_heater": {
+			"name": "temp_sensor_out",
+			"device": "/simulated/temp_out"
+		},
+
+		"temp_ambient": {
+			"name": "temp_ambient",
+			"device": "/simulated/temp_ambient"
+		}
+	},
+
+	"pumpPort": 8,
+	"heaterPort": 7,
+	"lightPort": 6,
+	"pumpSpeedS1Port": 1,
+	"pumpSpeedS2Port": 2,
+	"pumpSpeedS3Port": 3,
+	"pumpSpeedS4Port": 4,
+
+	"maxWaterTemp": 33,
+
+	"pingTarget": "8.8.8.8",
+
+	"dbName": "pipool_sim",
+	"dbUser": "pipool",
+	"dbPassword": "CHANGEME_TO_YOUR_DB_PASSWORD",
+
+	"simulationSettings": {
+		"heaterWattsPerSecond": 100,
+		"waterVolumeLiters": 20000,
+		"ambientCoolingRate": 0.5,
+		"initialWaterTemp": 26.0,
+		"initialAmbientTemp": 22.0
+	}
+}
