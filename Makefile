@@ -1,11 +1,12 @@
 # PiPool Makefile
 # Database migration and development tasks
 
-.PHONY: help dev migrate migrate-new migrate-status migrate-stamp migrate-history migrate-downgrade
+.PHONY: help dev dev-sim migrate migrate-new migrate-status migrate-stamp migrate-history migrate-downgrade
 
 help:
 	@echo "PiPool Makefile Commands:"
 	@echo "  make dev               - Run development server"
+	@echo "  make dev-sim           - Run development server in simulated hardware mode"
 	@echo "  make migrate           - Run all pending migrations"
 	@echo "  make migrate-new MSG='description' - Create new migration"
 	@echo "  make migrate-status    - Show current migration status"
@@ -14,7 +15,10 @@ help:
 	@echo "  make migrate-downgrade - Downgrade one migration (careful!)"
 
 dev:
-	uv run python -m pipool
+	uv run python src/pipool.py
+
+dev-sim:
+	PIPOOL_HARDWARE_MODE=simulated uv run python src/pipool.py
 
 test:
 	uv run pytest
